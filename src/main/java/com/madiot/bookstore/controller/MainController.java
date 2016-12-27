@@ -12,6 +12,6 @@ public class MainController {
 
     @RequestMapping("/index")
     public String index(){
-        return "/resources/index.html";
+        return "/resources/other/index.html";
     }
 }
