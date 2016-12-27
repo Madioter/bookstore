@@ -175,12 +175,29 @@
     <build>
         <resources>
             <resource>
-                <directory>src/main/java/config/${profile.path}</directory>
-                <filtering>true</filtering>
+                <directory>src/main/resources</directory>
+                <includes>
+                    <include>**/*.properties</include>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
             </resource>
             <resource>
                 <directory>src/main/java</directory>
+                <includes>
+                    <include>**/*.xml</include>
+                </includes>
+                <filtering>false</filtering>
             </resource>
         </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <warSourceDirectory>src/main/web</warSourceDirectory>
+                </configuration>
+            </plugin>
+        </plugins>
     </build>
 </project>

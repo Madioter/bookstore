@@ -6,15 +6,15 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <!-- 扫描Controller所在包，找到管理的Controller类 -->
-    <context:component-scan base-package="com.madiot.enterprise.controller"/>
+    <context:component-scan base-package="com.madiot.bookstore.controller"/>
 
     <!-- 配置静态资源文件可用 -->
     <mvc:default-servlet-handler/>
 
     <!-- jsp解析器 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
-        <property name="suffix" value=".jsp"/>
+        <!--<property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>-->
         <!--<property name="viewClass" value="org.springframework.web.servlet.view.JstlView" />-->
     </bean>
 
