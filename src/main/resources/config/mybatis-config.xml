@@ -4,18 +4,18 @@
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
     <settings>
-        <setting name="cacheEnabled" value="true"/>
-        <setting name="lazyLoadingEnabled" value="true"/>
-        <setting name="aggressiveLazyLoading" value="false"/>
-        <!--         <setting name="enhancementEnabled" value="true"/> -->
-        <!--         <setting name="lazyLoadingEnabled" value="true"/> -->
-        <!--         <setting name="maxRequests" value="32"/> -->
-        <!--         <setting name="maxSessions" value="10"/> -->
-        <!--         <setting name="maxTransactions" value="5"/> -->
-        <!--         <setting name="useStatementNamespaces" value="true"/> -->
+        <setting title="cacheEnabled" value="true"/>
+        <setting title="lazyLoadingEnabled" value="true"/>
+        <setting title="aggressiveLazyLoading" value="false"/>
+        <!--         <setting title="enhancementEnabled" value="true"/> -->
+        <!--         <setting title="lazyLoadingEnabled" value="true"/> -->
+        <!--         <setting title="maxRequests" value="32"/> -->
+        <!--         <setting title="maxSessions" value="10"/> -->
+        <!--         <setting title="maxTransactions" value="5"/> -->
+        <!--         <setting title="useStatementNamespaces" value="true"/> -->
 
-        <!--     <setting name="lazyLoadingEnabled" value="true"/>-->
-        <!--     <setting name="aggressiveLazyLoading" value="false"/>-->
+        <!--     <setting title="lazyLoadingEnabled" value="true"/>-->
+        <!--     <setting title="aggressiveLazyLoading" value="false"/>-->
     </settings>
 
     <!-- 别名
@@ -29,7 +29,7 @@
     指定数据库分页方言Dialect, 其它方言:OracleDialect,SQLServerDialect,SybaseDialect,DB2Dialect,PostgreSQLDialect,MySQLDialect,DerbyDialect
     <plugins>
         <plugin interceptor="com.asgard.cfap.plugin.dialect.interceptor.OffsetLimitInterceptor">
-            <property name="dialectClass" value="com.asgard.cfap.plugin.dialect.MySQLDialect"/>
+            <property title="dialectClass" value="com.asgard.cfap.plugin.dialect.MySQLDialect"/>
         </plugin>
     </plugins>
     <mappers>
