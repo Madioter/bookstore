@@ -1,4 +1,4 @@
-package com.madiot.bookstore.domian.entity;
+package com.madiot.bookstore.domain.entity;
 
 /**
  * 用户地址管理

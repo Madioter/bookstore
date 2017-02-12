@@ -22,3 +22,18 @@ CREATE TABLE t_notice
     title VARCHAR(200),
     top INT(11)
 );
+
+CREATE TABLE t_book
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    title VARCHAR(200) NOT NULL,
+    author VARCHAR(50),
+    publication_date DATE,
+    press VARCHAR(100),
+    isbn VARCHAR(50),
+    pages INT(11),
+    cost DECIMAL(2),
+    cover_path VARCHAR(200),
+    description VARCHAR(1000),
+    add_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+);

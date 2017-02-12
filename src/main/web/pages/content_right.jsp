@@ -1,7 +1,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <div id="templatemo_content_right">
-    <c:forEach var="${recommendedBooks}" items="book" varStatus="status">
+    <c:forEach var="book" items="${recommendedBooks}" varStatus="status">
         <div class="templatemo_product_box">
             <h1>${book.title} <span>(${book.author})</span></h1>
             <img src="${path}/book/cover?images=${book.coverPath}" alt="image"/>

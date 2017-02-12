@@ -13,6 +13,6 @@ public class NoticeController {
 
     @RequestMapping("/image")
     public String image(String name) {
-        return "/resources/images/notices" + name;
+        return "/resources/images/notices/" + name;
     }
 }

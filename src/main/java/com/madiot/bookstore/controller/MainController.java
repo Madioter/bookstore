@@ -1,8 +1,8 @@
 package com.madiot.bookstore.controller;
 
-import com.madiot.bookstore.domian.entity.NoticeBGEntity;
-import com.madiot.bookstore.domian.vo.BookVo;
-import com.madiot.bookstore.domian.vo.NoticeVo;
+import com.madiot.bookstore.domain.entity.NoticeBGEntity;
+import com.madiot.bookstore.domain.vo.BookVo;
+import com.madiot.bookstore.domain.vo.NoticeVo;
 import com.madiot.bookstore.service.IBookService;
 import com.madiot.bookstore.service.INoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +35,9 @@ public class MainController {
         List<BookVo> recommendedBooks = bookService.getRecommendedBook();
         mv.addObject("notices", notices);
         mv.addObject("noticeBG", noticeBGEntity);
-        mv.addObject("newBooks",newBooks);
-        mv.addObject("bestSaleBooks",bestSaleBooks);
-        mv.addObject("recommendedBooks",recommendedBooks);
+        mv.addObject("newBooks", newBooks);
+        mv.addObject("bestSaleBooks", bestSaleBooks);
+        mv.addObject("recommendedBooks", recommendedBooks);
         return mv;
     }
 }

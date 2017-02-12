@@ -1,7 +1,7 @@
 package com.madiot.bookstore.mapper;
 
-import com.madiot.bookstore.domian.PageBean;
-import com.madiot.bookstore.domian.entity.NoticeBGEntity;
+import com.madiot.bookstore.domain.PageBean;
+import com.madiot.bookstore.domain.entity.NoticeBGEntity;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.madiot.bookstore.domian.entity;
+package com.madiot.bookstore.domain.entity;
 
 import java.util.Date;
 

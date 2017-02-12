@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.madiot.bookstore.mapper.NoticeBGMapper">
-    <resultMap id="base" type="com.madiot.bookstore.domian.entity.NoticeBGEntity">
+    <resultMap id="base" type="com.madiot.bookstore.domain.entity.NoticeBGEntity">
         <id column="id" property="id"></id>
         <result column="title" property="title"></result>
         <result column="position_x" property="positionX"></result>
@@ -15,15 +15,15 @@
     </resultMap>
 
     <sql id="base_column">
-        id, title, position_x, position_y, width, height, background_path, notice_count
+        id, name, position_x, position_y, width, height, background_path, notice_count
     </sql>
 
-    <insert id="insert" parameterType="com.madiot.bookstore.domian.entity.NoticeBGEntity">
+    <insert id="insert" parameterType="com.madiot.bookstore.domain.entity.NoticeBGEntity">
       insert into t_notice_bg (title, position_x, position_y, width, height, background_path, notice_count)
       values (#{title}, #{positionX}, #{positionY}, #{width}, #{height}, #{backgroundPath}, #{notice_count})
     </insert>
 
-    <update id="update" parameterType="com.madiot.bookstore.domian.entity.NoticeBGEntity">
+    <update id="update" parameterType="com.madiot.bookstore.domain.entity.NoticeBGEntity">
         update t_notice_bg
         <set>
             <if test="title != null and title != ''">
@@ -53,13 +53,13 @@
         update t_notice_bg SET used = 1 where id = #{id};
     </update>
 
-    <select id="getUsed">
+    <select id="getUsed" resultMap="base">
         select
         <include refid="base_column"/>
-        from t_notice_bg where used = 1;
+        from t_notice_bg where used = 1 limit 0,1;
     </select>
 
-    <select id="selectByCondition" parameterType="com.madiot.bookstore.domian.PageBean">
+    <select id="selectByCondition" parameterType="com.madiot.bookstore.domain.PageBean">
         select
         <include refid="base_column"/>
         from t_notice_bg
@@ -73,7 +73,7 @@
         </if>
     </select>
 
-    <select id="countByCondition" parameterType="com.madiot.bookstore.domian.PageBean">
+    <select id="countByCondition" parameterType="com.madiot.bookstore.domain.PageBean">
         select count(1)
         from t_notice_bg
         <where>

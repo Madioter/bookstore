@@ -1,6 +1,6 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domian.vo.BookVo;
+import com.madiot.bookstore.domain.vo.BookVo;
 
 import java.util.List;
 

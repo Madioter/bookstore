@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.madiot.bookstore.mapper.RecommendedMapper">
+    <insert id="insert" parameterType="int">
+        insert into t_recommended_list (book_id)
+        values (#{bookId})
+    </insert>
+
+    <select id="selectByCondition" parameterType="com.madiot.bookstore.domain.PageBean" resultMap="com.madiot.bookstore.mapper.BookMapper.base">
+        select
+        <include refid="com.madiot.bookstore.mapper.BookMapper.base_column"/>
+        from t_recommended_list b left join t_book t on b.book_id = t.id
+        <if test="start >=0 and limit > 0">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.madiot.bookstore.domain.PageBean">
+        select count(1) from t_recommended_list
+    </select>
+
+    <delete id="delete" parameterType="int">
+        delete from t_recommended_list where id = #{id}
+    </delete>
+</mapper>

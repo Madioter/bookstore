@@ -1,4 +1,4 @@
-package com.madiot.bookstore.domian.entity;
+package com.madiot.bookstore.domain.entity;
 
 import java.util.Date;
 
@@ -55,6 +55,11 @@ public class BookEntity {
      * 书籍详情
      */
     private String description;
+
+    /**
+     * 关联的详情页面
+     */
+    private String link;
 
     public Integer getId() {
         return id;
@@ -134,5 +139,13 @@ public class BookEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

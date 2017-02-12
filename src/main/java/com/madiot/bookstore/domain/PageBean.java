@@ -1,4 +1,4 @@
-package com.madiot.bookstore.domian;
+package com.madiot.bookstore.domain;
 
 import java.util.List;
 import java.util.Map;

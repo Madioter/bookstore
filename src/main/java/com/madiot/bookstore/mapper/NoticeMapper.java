@@ -1,7 +1,7 @@
 package com.madiot.bookstore.mapper;
 
-import com.madiot.bookstore.domian.PageBean;
-import com.madiot.bookstore.domian.entity.NoticeEntity;
+import com.madiot.bookstore.domain.PageBean;
+import com.madiot.bookstore.domain.entity.NoticeEntity;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ public interface NoticeMapper {
 
     public List<NoticeEntity> selectByCondition(PageBean<NoticeEntity> pageBean);
 
-    public int countByConditon(PageBean<NoticeEntity> pageBean);
+    public int countByCondition(PageBean<NoticeEntity> pageBean);
 
     public int delete(int id);
 

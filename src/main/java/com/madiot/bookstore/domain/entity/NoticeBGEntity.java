@@ -1,4 +1,4 @@
-package com.madiot.bookstore.domian.entity;
+package com.madiot.bookstore.domain.entity;
 
 /**
  * 通知图片框背景图片以及位置定义

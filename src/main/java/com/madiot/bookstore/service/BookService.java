@@ -1,8 +1,9 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domian.vo.BookVo;
+import com.madiot.bookstore.domain.vo.BookVo;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ import java.util.List;
 public class BookService implements IBookService {
 
     public List<BookVo> getNewBooks() {
-        return null;
+        return new ArrayList<BookVo>();
     }
 
     public List<BookVo> getBestSaleBooks() {
@@ -20,6 +21,6 @@ public class BookService implements IBookService {
     }
 
     public List<BookVo> getRecommendedBook() {
-        return null;
+        return new ArrayList<BookVo>();
     }
 }

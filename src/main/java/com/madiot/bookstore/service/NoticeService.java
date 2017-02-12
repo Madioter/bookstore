@@ -1,7 +1,9 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domian.entity.NoticeBGEntity;
-import com.madiot.bookstore.domian.vo.NoticeVo;
+import com.madiot.bookstore.domain.PageBean;
+import com.madiot.bookstore.domain.entity.NoticeBGEntity;
+import com.madiot.bookstore.domain.entity.NoticeEntity;
+import com.madiot.bookstore.domain.vo.NoticeVo;
 import com.madiot.bookstore.mapper.NoticeBGMapper;
 import com.madiot.bookstore.mapper.NoticeMapper;
 import org.springframework.stereotype.Service;
@@ -24,22 +26,27 @@ public class NoticeService implements INoticeService {
 
 
     public List<NoticeVo> getNotices(int count) {
+        PageBean<NoticeEntity> pageBean = new PageBean<NoticeEntity>();
+        pageBean.setLimit(count);
+        List<NoticeEntity> noticeEntities = noticeMapper.selectByCondition(pageBean);
+        List<NoticeVo> notices = convert(noticeEntities);
+        return notices;
+    }
+
+    private List<NoticeVo> convert(List<NoticeEntity> noticeEntities) {
         List<NoticeVo> notices = new ArrayList<NoticeVo>();
-        NoticeVo noticeVo = new NoticeVo();
-        noticeVo.setImgPath("notice/image?name=map1.jpg");
-        noticeVo.setAlt("puss in boots1");
-        noticeVo.setTitle("puss in boots1");
-        notices.add(noticeVo);
+        for(NoticeEntity entity : noticeEntities) {
+            NoticeVo noticeVo = new NoticeVo();
+            noticeVo.setAlt(entity.getAlt());
+            noticeVo.setLink(entity.getLink());
+            noticeVo.setImgPath(entity.getImgPath());
+            noticeVo.setTitle(entity.getTitle());
+            notices.add(noticeVo);
+        }
         return notices;
     }
 
     public NoticeBGEntity getNoticeBg() {
-        NoticeBGEntity entity = new NoticeBGEntity();
-        entity.setHeight(160);
-        entity.setWidth(450);
-        entity.setPositionX(470);
-        entity.setPositionY(35);
-        entity.setBackgroundPath("resources/other/images/templatemo_header_bg.jpg");
-        return entity;
+        return noticeBGMapper.getUsed();
     }
 }

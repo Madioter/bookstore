@@ -1,6 +1,6 @@
 package com.madiot.bookstore.controller;
 
-import com.madiot.bookstore.domian.vo.BookVo;
+import com.madiot.bookstore.domain.vo.BookVo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;

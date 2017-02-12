@@ -1,9 +1,15 @@
-package com.madiot.bookstore.domian.vo;
+package com.madiot.bookstore.domain.entity;
 
 /**
+ * 通知图片框图片定义
  * Created by julian on 16/12/31.
  */
-public class NoticeVo {
+public class NoticeEntity {
+
+    /**
+     * 主键
+     */
+    private Integer id;
 
     /**
      * 图片路径
@@ -25,6 +31,13 @@ public class NoticeVo {
      */
     private String alt;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public String getImgPath() {
         return imgPath;

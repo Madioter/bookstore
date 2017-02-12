@@ -1,7 +1,7 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domian.entity.NoticeBGEntity;
-import com.madiot.bookstore.domian.vo.NoticeVo;
+import com.madiot.bookstore.domain.entity.NoticeBGEntity;
+import com.madiot.bookstore.domain.vo.NoticeVo;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.madiot.bookstore.domian.vo;
+package com.madiot.bookstore.domain.vo;
 
 /**
  * 书籍详情
