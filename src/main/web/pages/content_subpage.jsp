@@ -17,5 +17,5 @@
 
 <div class="cleaner_with_height">&nbsp;</div>
 
-<a href="index.html"><img src="images/templatemo_ads.jpg" alt="css template ad" /></a>
+<a href="index.html"><img src="/resources/other/images/templatemo_ads.jpg" alt="css template ad" /></a>
 

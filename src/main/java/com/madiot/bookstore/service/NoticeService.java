@@ -26,8 +26,7 @@ public class NoticeService implements INoticeService {
 
 
     public List<NoticeVo> getNotices(int count) {
-        PageBean<NoticeEntity> pageBean = new PageBean<NoticeEntity>();
-        pageBean.setLimit(count);
+        PageBean<NoticeEntity> pageBean = new PageBean<NoticeEntity>(count,1);
         List<NoticeEntity> noticeEntities = noticeMapper.selectByCondition(pageBean);
         List<NoticeVo> notices = convert(noticeEntities);
         return notices;
@@ -35,11 +34,11 @@ public class NoticeService implements INoticeService {
 
     private List<NoticeVo> convert(List<NoticeEntity> noticeEntities) {
         List<NoticeVo> notices = new ArrayList<NoticeVo>();
-        for(NoticeEntity entity : noticeEntities) {
+        for (NoticeEntity entity : noticeEntities) {
             NoticeVo noticeVo = new NoticeVo();
             noticeVo.setAlt(entity.getAlt());
             noticeVo.setLink(entity.getLink());
-            noticeVo.setImgPath(entity.getImgPath());
+            noticeVo.setImgPath("notice/image?name=" + entity.getImgPath());
             noticeVo.setTitle(entity.getTitle());
             notices.add(noticeVo);
         }

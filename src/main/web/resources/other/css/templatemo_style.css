@@ -234,7 +234,7 @@ img {
 #templatemo_content_right .templatemo_product_box {
 	float: left;
 	width: 303px;
-	height: 210px;
+	height: 250px;
 	padding: 10px;
 	border: 1px solid #333;
 }
@@ -293,7 +293,7 @@ img {
 
 .templatemo_product_box .product_info {
 	float: left;
-	width: 180px;
+	width: 220px;
 }
 
 .product_info p {

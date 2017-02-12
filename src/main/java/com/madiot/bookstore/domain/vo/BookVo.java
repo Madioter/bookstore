@@ -56,6 +56,11 @@ public class BookVo {
      */
     private String description;
 
+    /**
+     * 链接
+     */
+    private String link;
+
     public Integer getId() {
         return id;
     }
@@ -134,5 +139,13 @@ public class BookVo {
 
     public void setCoverPath(String coverPath) {
         this.coverPath = coverPath;
+    }
+
+    public String getLink() {
+        return link;
+    }
+
+    public void setLink(String link) {
+        this.link = link;
     }
 }

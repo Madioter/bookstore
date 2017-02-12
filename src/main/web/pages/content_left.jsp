@@ -6,7 +6,7 @@
         <h1>热销书籍</h1>
         <ul>
             <c:forEach items="${bestSaleBooks}" var="book">
-                <li><a href="subpage(${book.id})">${book.title}</a></li>
+                <li><a href="${book.link}" target="_blank">${book.title}</a></li>
             </c:forEach>
         </ul>
     </div>
@@ -14,7 +14,7 @@
         <h1>新书快递</h1>
         <ul>
             <c:forEach items="${newBooks}" var="book">
-                <li><a href="subpage(${book.id})">${book.title}</a></li>
+                <li><a href="${book.link}" target="_blank">${book.title}</a></li>
             </c:forEach>
         </ul>
     </div>

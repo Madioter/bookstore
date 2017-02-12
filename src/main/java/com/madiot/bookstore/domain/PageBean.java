@@ -22,7 +22,7 @@ public class PageBean<T> {
     /**
      * 查询条件
      */
-    private Map<String,Object> condition;
+    private Map<String, Object> condition;
 
     /**
      * 查询结果
@@ -33,6 +33,11 @@ public class PageBean<T> {
      * 总数
      */
     private int total;
+
+    public PageBean(int pageSize, int pageNum) {
+        this.start = pageSize * (pageNum - 1);
+        this.limit = pageSize;
+    }
 
     public int getStart() {
         return start;
