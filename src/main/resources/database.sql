@@ -37,3 +37,21 @@ CREATE TABLE t_book
     description VARCHAR(1000),
     add_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
 );
+
+CREATE TABLE t_best_sale_list
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    book_id INT(11) NOT NULL
+);
+
+CREATE TABLE t_new_book_list
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    book_id INT(11) NOT NULL
+);
+
+CREATE TABLE t_recommended_list
+(
+    id INT(11) PRIMARY KEY NOT NULL AUTO_INCREMENT,
+    book_id INT(11) NOT NULL
+);
