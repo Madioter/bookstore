@@ -27,7 +27,7 @@ public class MainController {
 
     @RequestMapping("/index")
     public ModelAndView index() {
-        ModelAndView mv = new ModelAndView("/pages/index.jsp");
+        ModelAndView mv = new ModelAndView("/pages/websit/index.jsp");
         NoticeBGEntity noticeBGEntity = noticeService.getNoticeBg();
         List<NoticeVo> notices = noticeService.getNotices(noticeBGEntity.getNoticeCount());
         List<BookVo> newBooks = bookService.getNewBooks();

@@ -1,0 +1,1 @@
+INSERT INTO bookstore.t_notice_bg (position_x, position_y, width, height, background_path, used, name, notice_count) VALUES (470, 35, 450, 160, 'resources/other/images/templatemo_header_bg.jpg', 1, 'default', 2);

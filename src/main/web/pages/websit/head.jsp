@@ -10,5 +10,5 @@
         }
 </style>
 <div id="templatemo_header">
-        <jsp:include  page="./pages.jsp"/>
+        <jsp:include  page="pages.jsp"/>
 </div>

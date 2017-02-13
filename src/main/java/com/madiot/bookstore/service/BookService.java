@@ -4,6 +4,7 @@ import com.madiot.bookstore.domain.PageBean;
 import com.madiot.bookstore.domain.entity.BookEntity;
 import com.madiot.bookstore.domain.vo.BookVo;
 import com.madiot.bookstore.mapper.BestSaleMapper;
+import com.madiot.bookstore.mapper.BookMapper;
 import com.madiot.bookstore.mapper.NewBookMapper;
 import com.madiot.bookstore.mapper.RecommendedMapper;
 import org.apache.http.client.utils.DateUtils;
@@ -28,6 +29,9 @@ public class BookService implements IBookService {
 
     @Resource
     private RecommendedMapper recommendedMapper;
+
+    @Resource
+    private BookMapper bookMapper;
 
     public List<BookVo> getNewBooks() {
         List<BookVo> books = new ArrayList<BookVo>();
@@ -78,5 +82,18 @@ public class BookService implements IBookService {
             books.add(bookVo);
         }
         return books;
+    }
+
+    public void save(BookEntity book) {
+
+    }
+
+    public void delete(String ids) {
+        String[] idArray = ids.split(",");
+        List<Integer> idList = new ArrayList<Integer>();
+        for (String idStr : idArray) {
+            idList.add(Integer.valueOf(idStr));
+        }
+        bookMapper.deleteByBatch(idList);
     }
 }

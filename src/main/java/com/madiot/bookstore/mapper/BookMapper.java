@@ -19,4 +19,6 @@ public interface BookMapper {
     public int countByCondition(PageBean<BookEntity> pageBean);
 
     public int delete(int id);
+
+    void deleteByBatch(List<Integer> idList);
 }

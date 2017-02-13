@@ -76,6 +76,7 @@
             <if test="condition != null and condition.isbn != null and condition.isbn != ''">
                 and isbn = #{condition.isbn}
             </if>
+            and t.is_delete = 0
         </where>
         order by publication_date DESC
         <if test="start >=0 and limit > 0">
@@ -98,10 +99,18 @@
             <if test="condition != null and condition.isbn != null and condition.isbn != ''">
                 and isbn = #{condition.isbn}
             </if>
+            and t.is_delete = 0
         </where>
     </select>
 
-    <delete id="delete" parameterType="int">
-        delete from t_book where id = #{id}
-    </delete>
+    <update id="delete" parameterType="int">
+        update t_book set is_delete = 1 where id = #{id}
+    </update>
+
+    <update id="deleteByBatch" parameterType="list">
+        update t_book set is_delete = 1 where id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
 </mapper>

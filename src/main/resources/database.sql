@@ -32,10 +32,12 @@ CREATE TABLE t_book
     press VARCHAR(100),
     isbn VARCHAR(50),
     pages INT(11),
-    cost DECIMAL(2),
+    cost DECIMAL(4,2),
     cover_path VARCHAR(200),
     description VARCHAR(1000),
-    add_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL
+    add_time DATETIME DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    link VARCHAR(200),
+    is_delete INT(11) DEFAULT '0' NOT NULL
 );
 
 CREATE TABLE t_best_sale_list

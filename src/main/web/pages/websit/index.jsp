@@ -11,10 +11,10 @@
 </head>
 <body>
 <div id="templatemo_container">
-    <jsp:include page="./navbar.jsp"/>
-    <jsp:include page="./head.jsp"/>
-    <jsp:include page="./content.jsp"/>
-    <jsp:include page="./foot.jsp"/>
+    <jsp:include page="navbar.jsp"/>
+    <jsp:include page="head.jsp"/>
+    <jsp:include page="content.jsp"/>
+    <jsp:include page="foot.jsp"/>
 </div>
 </body>
 </html>
