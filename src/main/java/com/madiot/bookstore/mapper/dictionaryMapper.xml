@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.madiot.bookstore.mapper.BookMapper">
+    <resultMap id="base" type="com.madiot.bookstore.domain.entity.BookEntity">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="author" property="author"></result>
+        <result column="publication_date" property="publicationDate"></result>
+        <result column="press" property="press"></result>
+        <result column="isbn" property="isbn"></result>
+        <result column="pages" property="pages"></result>
+        <result column="cost" property="cost"></result>
+        <result column="cover_path" property="coverPath"></result>
+        <result column="description" property="description"></result>
+    </resultMap>
+
+    <sql id="base_column">
+        t.id, t.title, t.author, t.publication_date, t.press, t.isbn, t.pages, t.cost, t.cover_path, t.description, t.link
+    </sql>
+
+    <insert id="insert" parameterType="com.madiot.bookstore.domain.entity.BookEntity">
+        insert into t_book (title, author, publication_date, press, isbn, pages, cost, cover_path, description, link)
+        values (#{title}, #{author}, #{publicationDate}, #{press}, #{isbn}, #{pages}, #{cost}, #{coverPath}, #{description}, #{link})
+    </insert>
+
+    <update id="update" parameterType="com.madiot.bookstore.domain.entity.BookEntity">
+        update t_book
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="author != null">
+                author = #{author},
+            </if>
+            <if test="publicationDate != null">
+                publication_date = #{publicationDate},
+            </if>
+            <if test="press != null">
+                press = #{press},
+            </if>
+            <if test="isbn != null">
+                isbn = #{isbn},
+            </if>
+            <if test="pages != null">
+                pages = #{pages},
+            </if>
+            <if test="cost != null">
+                cost = #{cost},
+            </if>
+            <if test="coverPath != null">
+                cover_path = #{coverPath},
+            </if>
+            <if test="description != null">
+                description = #{description},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <select id="selectByCondition" parameterType="com.madiot.bookstore.common.PageBean" resultMap="base">
+        select
+        <include refid="base_column"/>
+        from t_book t
+        <where>
+            <if test="conditions != null and conditions.title != null and conditions.title != ''">
+                and title like CONCAT('%','${conditions.title}','%')
+            </if>
+            <if test="conditions != null and conditions.author != null and conditions.author != ''">
+                and author like CONCAT('%','${conditions.author}','%')
+            </if>
+            <if test="conditions != null and conditions.press != null and conditions.press != ''">
+                and press like CONCAT('%','${conditions.press}','%')
+            </if>
+            <if test="conditions != null and conditions.isbn != null and conditions.isbn != ''">
+                and isbn = #{conditions.isbn}
+            </if>
+            and t.is_delete = 0
+        </where>
+        order by publication_date DESC
+        <if test="start >=0 and limit > 0">
+            limit #{start},#{limit}
+        </if>
+    </select>
+
+    <select id="countByCondition" parameterType="com.madiot.bookstore.common.PageBean">
+        select count(1) from t_book t
+        <where>
+            <if test="conditions != null and conditions.title != null and conditions.title != ''">
+                and title like CONCAT('%','${conditions.title}','%')
+            </if>
+            <if test="conditions != null and conditions.author != null and conditions.author != ''">
+                and author like CONCAT('%','${conditions.author}','%')
+            </if>
+            <if test="conditions != null and conditions.press != null and conditions.press != ''">
+                and press like CONCAT('%','${conditions.press}','%')
+            </if>
+            <if test="conditions != null and conditions.isbn != null and conditions.isbn != ''">
+                and isbn = #{conditions.isbn}
+            </if>
+            and t.is_delete = 0
+        </where>
+    </select>
+
+    <update id="delete" parameterType="int">
+        update t_book set is_delete = 1 where id = #{id}
+    </update>
+
+    <update id="deleteByBatch" parameterType="list">
+        update t_book set is_delete = 1 where id in
+        <foreach collection="list" index="index" item="item" open="(" separator="," close=")">
+            #{item}
+        </foreach>
+    </update>
+</mapper>
