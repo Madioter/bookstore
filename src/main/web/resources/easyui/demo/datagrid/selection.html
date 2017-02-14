@@ -31,9 +31,9 @@
 	</table>
 	<div style="margin:10px 0;">
 		<span>Selection Mode: </span>
-		<select onchange="$('#dg').datagrid({singleSelect:(this.value==0)})">
-			<option value="0">Single Row</option>
-			<option value="1">Multiple Rows</option>
+		<select onchange="$('#dg').datagrid({singleSelect:(this.name==0)})">
+			<option name="0">Single Row</option>
+			<option name="1">Multiple Rows</option>
 		</select>
 	</div>
 	<script type="text/javascript">

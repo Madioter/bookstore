@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <h1>${title} <span>(${author})</span></h1>
-<div class="image_panel"><img src="${path}/book/cover?images=templatemo_image_02.jpg" alt="CSS Template" width="100" height="150" /></div>
+<div class="image_panel"><img src="${basePath}book/cover?images=templatemo_image_02.jpg" alt="CSS Template" width="100" height="150" /></div>
 <h2>Read the lessons - Watch the videos - Do the exercises</h2>
 <ul>
     <li>By Deke <a href="#">McClelland</a></li>

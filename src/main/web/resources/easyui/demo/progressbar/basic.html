@@ -18,10 +18,10 @@
 	<div id="p" class="easyui-progressbar" style="width:400px;"></div>
 	<script>
 		function start(){
-			var value = $('#p').progressbar('getValue');
-			if (value < 100){
-				value += Math.floor(Math.random() * 10);
-				$('#p').progressbar('setValue', value);
+			var name = $('#p').progressbar('getValue');
+			if (name < 100){
+				name += Math.floor(Math.random() * 10);
+				$('#p').progressbar('setValue', name);
 				setTimeout(arguments.callee, 200);
 			}
 		};

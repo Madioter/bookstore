@@ -8,6 +8,8 @@
  */
 package com.madiot.bookstore.domain.entity;
 
+import java.util.List;
+
 /**
  * @ClassName: Dictionary
  * @Description: 字典类
@@ -16,13 +18,35 @@ package com.madiot.bookstore.domain.entity;
  */
 public class DictionaryDO {
 
+    /**
+     * 主键
+     */
     private Integer id;
 
-    private Integer parent_id;
+    /**
+     * 父类别
+     */
+    private Integer parentId;
 
-    private String value;
+    /**
+     * 当前类别信息
+     */
+    private String name;
 
+    /**
+     * 当前类别编码
+     */
     private String code;
+
+    /**
+     * 是否删除
+     */
+    private Integer isDelete;
+
+    /**
+     * 子节点
+     */
+    private List<DictionaryDO> children;
 
     public Integer getId() {
         return id;
@@ -32,20 +56,20 @@ public class DictionaryDO {
         this.id = id;
     }
 
-    public Integer getParent_id() {
-        return parent_id;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParent_id(Integer parent_id) {
-        this.parent_id = parent_id;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getValue() {
-        return value;
+    public String getName() {
+        return name;
     }
 
-    public void setValue(String value) {
-        this.value = value;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getCode() {
@@ -54,5 +78,21 @@ public class DictionaryDO {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public Integer getIsDelete() {
+        return isDelete;
+    }
+
+    public void setIsDelete(Integer isDelete) {
+        this.isDelete = isDelete;
+    }
+
+    public List<DictionaryDO> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<DictionaryDO> children) {
+        this.children = children;
     }
 }

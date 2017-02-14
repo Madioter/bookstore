@@ -19,12 +19,12 @@
 					label: 'Email:',
 					labelPosition: 'top',
 					prompt: 'Input something here!',
-					value: 'my@email.com',
+					name: 'my@email.com',
 					icons:[{
 						iconCls:'icon-search',
 						handler: function(e){
 							var v = $(e.data.target).textbox('getValue');
-							alert('The inputed value is ' + (v ? v : 'empty'));
+							alert('The inputed name is ' + (v ? v : 'empty'));
 						}
 					}]
 					">

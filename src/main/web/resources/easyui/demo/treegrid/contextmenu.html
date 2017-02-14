@@ -44,10 +44,10 @@
 		<div onclick="expand()">Expand</div>
 	</div>
 	<script type="text/javascript">
-		function formatProgress(value){
-	    	if (value){
+		function formatProgress(name){
+	    	if (name){
 		    	var s = '<div style="width:100%;border:1px solid #ccc">' +
-		    			'<div style="width:' + value + '%;background:#cc0000;color:#fff">' + value + '%' + '</div>'
+		    			'<div style="width:' + name + '%;background:#cc0000;color:#fff">' + name + '%' + '</div>'
 		    			'</div>';
 		    	return s;
 	    	} else {

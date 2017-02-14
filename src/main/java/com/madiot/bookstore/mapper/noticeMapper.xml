@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.madiot.bookstore.mapper.NoticeMapper">
-    <resultMap id="base" type="com.madiot.bookstore.domain.entity.NoticeEntity">
+    <resultMap id="base" type="com.madiot.bookstore.domain.entity.NoticeDO">
         <id column="id" property="id"></id>
         <result column="img_path" property="imgPath"></result>
         <result column="link" property="link"></result>
@@ -15,12 +15,12 @@
         id, img_path, link, alt, title, top
     </sql>
 
-    <insert id="insert" parameterType="com.madiot.bookstore.domain.entity.NoticeEntity">
+    <insert id="insert" parameterType="com.madiot.bookstore.domain.entity.NoticeDO">
         insert into t_notice (img_path, link, alt, title, top)
         values (#{imgPath}, #{link}, #{alt}, #{title}, #{top})
     </insert>
 
-    <update id="update" parameterType="com.madiot.bookstore.domain.entity.NoticeEntity">
+    <update id="update" parameterType="com.madiot.bookstore.domain.entity.NoticeDO">
         update t_notice
         <set>
             <if test="link != null and link != ''">
@@ -50,16 +50,16 @@
         order by top dec limit 0, #{count}
     </select>
 
-    <select id="selectByCondition" parameterType="com.madiot.bookstore.domain.PageBean" resultMap="base">
+    <select id="selectByCondition" parameterType="com.madiot.bookstore.common.PageBean" resultMap="base">
         select
         <include refid="base_column"/>
         from t_notice
         <where>
-            <if test="condition != null and condition.title != null and condition.title != ''">
-                and title like CONCAT('%','${condition.title}','%')
+            <if test="conditions != null and conditions.title != null and conditions.title != ''">
+                and title like CONCAT('%','${conditions.title}','%')
             </if>
-            <if test="condition != null and condition.alt != null and condition.alt != ''">
-                and alt like CONCAT('%','${condition.alt}','%')
+            <if test="conditions != null and conditions.alt != null and conditions.alt != ''">
+                and alt like CONCAT('%','${conditions.alt}','%')
             </if>
         </where>
         order by top DESC
@@ -68,14 +68,14 @@
         </if>
     </select>
 
-    <select id="countByCondition" parameterType="com.madiot.bookstore.domain.PageBean">
+    <select id="countByCondition" parameterType="com.madiot.bookstore.common.PageBean">
         select count(1) from t_notice
         <where>
-            <if test="condition.title != null and condition.title != ''">
-                and title like CONCAT('%','${condition.title}','%')
+            <if test="conditions != null and conditions.title != null and conditions.title != ''">
+                and title like CONCAT('%','${conditions.title}','%')
             </if>
-            <if test="condition.alt != null and condition.alt != ''">
-                and alt like CONCAT('%','${condition.alt}','%')
+            <if test="conditions != null and conditions.alt != null and conditions.alt != ''">
+                and alt like CONCAT('%','${conditions.alt}','%')
             </if>
         </where>
     </select>

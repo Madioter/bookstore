@@ -26,7 +26,7 @@ public class SaleRecordDO {
     /**
      * 购买用户
      */
-    private UserEntity user;
+    private UserDO user;
 
     public Integer getId() {
         return id;
@@ -52,11 +52,11 @@ public class SaleRecordDO {
         this.saleDate = saleDate;
     }
 
-    public UserEntity getUser() {
+    public UserDO getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(UserDO user) {
         this.user = user;
     }
 }

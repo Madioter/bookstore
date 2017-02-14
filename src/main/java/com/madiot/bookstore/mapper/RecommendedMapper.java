@@ -1,7 +1,7 @@
 package com.madiot.bookstore.mapper;
 
-import com.madiot.bookstore.domain.PageBean;
-import com.madiot.bookstore.domain.entity.BookEntity;
+import com.madiot.bookstore.common.PageBean;
+import com.madiot.bookstore.domain.entity.BookDO;
 
 import java.util.List;
 
@@ -10,11 +10,11 @@ import java.util.List;
  */
 public interface RecommendedMapper {
 
-    public int insert(BookEntity entity);
+    public int insert(BookDO entity);
 
-    public List<BookEntity> selectByCondition(PageBean<BookEntity> pageBean);
+    public List<BookDO> selectByCondition(PageBean<BookDO> pageBean);
 
-    public int countByCondition(PageBean<BookEntity> pageBean);
+    public int countByCondition(PageBean<BookDO> pageBean);
 
     public int delete(int id);
 }

@@ -19,13 +19,13 @@
 			rule: [0,'PI/4','PI/2'],
 			min:0,
 			max:300,
-			tipFormatter:function(value){
-				return (value/300.0).toFixed(4);
+			tipFormatter:function(name){
+				return (name/300.0).toFixed(4);
 			},
 			converter:{
-				toPosition:function(value,size){
+				toPosition:function(name,size){
 					var opts = $(this).slider('options');
-					return Math.asin(value/opts.max)/(Math.PI)*2*size;
+					return Math.asin(name/opts.max)/(Math.PI)*2*size;
 				},
 				toValue:function(pos,size){
 					var opts = $(this).slider('options');

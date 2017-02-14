@@ -1,9 +1,9 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domain.PageBean;
-import com.madiot.bookstore.domain.entity.NoticeBGEntity;
-import com.madiot.bookstore.domain.entity.NoticeEntity;
-import com.madiot.bookstore.domain.vo.NoticeVo;
+import com.madiot.bookstore.common.PageBean;
+import com.madiot.bookstore.domain.entity.NoticeBGDO;
+import com.madiot.bookstore.domain.entity.NoticeDO;
+import com.madiot.bookstore.domain.vo.NoticeVO;
 import com.madiot.bookstore.mapper.NoticeBGMapper;
 import com.madiot.bookstore.mapper.NoticeMapper;
 import org.springframework.stereotype.Service;
@@ -25,17 +25,17 @@ public class NoticeService implements INoticeService {
     private NoticeBGMapper noticeBGMapper;
 
 
-    public List<NoticeVo> getNotices(int count) {
-        PageBean<NoticeEntity> pageBean = new PageBean<NoticeEntity>(count,1);
-        List<NoticeEntity> noticeEntities = noticeMapper.selectByCondition(pageBean);
-        List<NoticeVo> notices = convert(noticeEntities);
+    public List<NoticeVO> getNotices(int count) {
+        PageBean<NoticeDO> pageBean = new PageBean<NoticeDO>(count,1);
+        List<NoticeDO> noticeEntities = noticeMapper.selectByCondition(pageBean);
+        List<NoticeVO> notices = convert(noticeEntities);
         return notices;
     }
 
-    private List<NoticeVo> convert(List<NoticeEntity> noticeEntities) {
-        List<NoticeVo> notices = new ArrayList<NoticeVo>();
-        for (NoticeEntity entity : noticeEntities) {
-            NoticeVo noticeVo = new NoticeVo();
+    private List<NoticeVO> convert(List<NoticeDO> noticeEntities) {
+        List<NoticeVO> notices = new ArrayList<NoticeVO>();
+        for (NoticeDO entity : noticeEntities) {
+            NoticeVO noticeVo = new NoticeVO();
             noticeVo.setAlt(entity.getAlt());
             noticeVo.setLink(entity.getLink());
             noticeVo.setImgPath("notice/image?name=" + entity.getImgPath());
@@ -45,7 +45,7 @@ public class NoticeService implements INoticeService {
         return notices;
     }
 
-    public NoticeBGEntity getNoticeBg() {
+    public NoticeBGDO getNoticeBg() {
         return noticeBGMapper.getUsed();
     }
 }

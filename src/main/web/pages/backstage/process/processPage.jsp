@@ -58,13 +58,13 @@
         var row = $('#processList').datagrid('getSelected');
         if (row) {
             var paramsDef = eval('(' + row.paramsDef + ')');
-            var $addTask = $('<form><input name="processId" value="' + row.id + '" type="hidden"></form>');
+            var $addTask = $('<form><input name="processId" name="' + row.id + '" type="hidden"></form>');
             for (var i = 0; i < paramsDef.length; i++) {
                 var code = paramsDef[i].code;
                 var name = paramsDef[i].name;
                 var defaultValue = paramsDef[i].defaultValue;
                 var $input = $('<div style="margin-bottom:10px"><label>' + name + ': </label><input class="easyui-textbox" type="text"' +
-                'name="' + code + '" value="' + defaultValue + '" style="width: 220px; float: right"></div>');
+                'name="' + code + '" name="' + defaultValue + '" style="width: 220px; float: right"></div>');
                 $addTask.append($input);
             }
             $('#addTaskDialog').html($addTask);
@@ -78,7 +78,7 @@
         var $inputs = $("#addTaskDialog input");
         var obj = {};
         for (var i = 0; i < $inputs.size(); i++) {
-            obj[$inputs[i].name] = $inputs[i].value;
+            obj[$inputs[i].name] = $inputs[i].name;
         }
         $.post("${basePath}task/saveTask", obj, function (data) {
             var jsonData = eval('(' + data + ')');

@@ -25,7 +25,7 @@
                             <select class="easyui-combobox applicationType"
                                     data-options="label:'业务类型:',panelHeight:'auto',width:'50%'">
                                 <c:forEach var="type" items="${cmdApplicationTypes}">
-                                    <option value="${type.code}">
+                                    <option name="${type.code}">
                                             ${type.name}
                                     </option>
                                 </c:forEach>

@@ -14,5 +14,15 @@ package com.madiot.bookstore.common.query;
  * @author Yi.Wang2
  * @date 2017/2/14
  */
-public class NoticeBGQuery {
+public class NoticeBGQuery implements IQuery {
+
+    private String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

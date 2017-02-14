@@ -14,5 +14,14 @@ package com.madiot.bookstore.common;
  * @author Yi.Wang2
  * @date 2017/2/14
  */
-public class BookStoreException {
+public class BookStoreException extends Exception {
+
+    public BookStoreException(String message) {
+        super(message);
+    }
+
+    public BookStoreException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
 }

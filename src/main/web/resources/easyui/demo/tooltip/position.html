@@ -14,11 +14,11 @@
 	<p>Click the drop-down list below to change where the tooltip appears.</p>
 	<div style="margin:20px 0;"></div>
 	<span>Select position:</span>
-	<select onchange="changePosition(this.value)">
-		<option value="bottom">Bottom</option>
-		<option value="top">Top</option>
-		<option value="left">Left</option>
-		<option value="right">Right</option>
+	<select onchange="changePosition(this.name)">
+		<option name="bottom">Bottom</option>
+		<option name="top">Top</option>
+		<option name="left">Left</option>
+		<option name="right">Right</option>
 	</select>
 	<div style="padding:10px 200px">
 	<div id="pp" class="easyui-panel easyui-tooltip" title="This is the tooltip message." style="width:100px;padding:5px">Hover Me</div>

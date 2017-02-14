@@ -14,11 +14,11 @@
 	<p>Click the 'position' drop-down list and select an item to change the tab position.</p>
 	<div style="margin:20px 0;">
 		<span>Position:</span>
-		<select onchange="$('#tt').tabs({tabPosition:this.value})">
-			<option value="top">Top</option>
-			<option value="bottom">Bottom</option>
-			<option value="left">Left</option>
-			<option value="right">Right</option>
+		<select onchange="$('#tt').tabs({tabPosition:this.name})">
+			<option name="top">Top</option>
+			<option name="bottom">Bottom</option>
+			<option name="left">Left</option>
+			<option name="right">Right</option>
 		</select>
 	</div>
 	<div id="tt" class="easyui-tabs" style="width:700px;height:250px">

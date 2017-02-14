@@ -1,7 +1,7 @@
 package com.madiot.bookstore.mapper;
 
-import com.madiot.bookstore.domain.PageBean;
-import com.madiot.bookstore.domain.entity.NoticeBGEntity;
+import com.madiot.bookstore.common.PageBean;
+import com.madiot.bookstore.domain.entity.NoticeBGDO;
 
 import java.util.List;
 
@@ -10,15 +10,15 @@ import java.util.List;
  */
 public interface NoticeBGMapper {
 
-    public int insert(NoticeBGEntity entity);
+    public int insert(NoticeBGDO entity);
 
-    public int update(NoticeBGEntity entity);
+    public int update(NoticeBGDO entity);
 
     public int used(int id);
 
-    public NoticeBGEntity getUsed();
+    public NoticeBGDO getUsed();
 
-    public List<NoticeBGEntity> selectByCondition(PageBean pageBean);
+    public List<NoticeBGDO> selectByCondition(PageBean pageBean);
 
     public int countByCondition(PageBean pageBean);
 

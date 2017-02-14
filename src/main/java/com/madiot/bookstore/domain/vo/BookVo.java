@@ -4,7 +4,7 @@ package com.madiot.bookstore.domain.vo;
  * 书籍详情
  * Created by julian on 17/1/1.
  */
-public class BookVo {
+public class BookVO {
 
     /**
      * 书籍ID
@@ -60,6 +60,11 @@ public class BookVo {
      * 链接
      */
     private String link;
+
+    /**
+     * 分类
+     */
+    private String type;
 
     public Integer getId() {
         return id;
@@ -147,5 +152,13 @@ public class BookVo {
 
     public void setLink(String link) {
         this.link = link;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }

@@ -6,7 +6,7 @@
                 height: 285px;
                 padding: 0;
                 margin: 0;
-                background: url(${path}/${noticeBG.backgroundPath}) no-repeat;
+                background: url(${basePath}${noticeBG.backgroundPath}) no-repeat;
         }
 </style>
 <div id="templatemo_header">

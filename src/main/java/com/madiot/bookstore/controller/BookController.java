@@ -1,8 +1,8 @@
 package com.madiot.bookstore.controller;
 
-import com.madiot.bookstore.domain.PageBean;
-import com.madiot.bookstore.domain.entity.BookEntity;
-import com.madiot.bookstore.domain.vo.BookVo;
+import com.madiot.bookstore.common.PageBean;
+import com.madiot.bookstore.domain.entity.BookDO;
+import com.madiot.bookstore.domain.vo.BookVO;
 import com.madiot.bookstore.service.IBookService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,7 +23,7 @@ public class BookController {
     @RequestMapping("/subPage")
     public ModelAndView subPage(int id) {
         ModelAndView mv = new ModelAndView("/pages/websit/content_subpage.jsp");
-        BookVo bookVo = null;
+        BookVO bookVo = null;
         mv.addObject("book", bookVo);
         return mv;
     }
@@ -33,9 +33,14 @@ public class BookController {
         return "/resources/images/books/" + coverPath;
     }
 
+    @RequestMapping("/bookPage")
+    public String bookPage() {
+        return "/pages/backstage/book/bookPage.jsp";
+    }
+
     @RequestMapping("/save")
     @ResponseBody
-    public String save(BookEntity book) {
+    public String save(BookDO book) {
         bookService.save(book);
         return "success";
     }
@@ -47,10 +52,10 @@ public class BookController {
         return "success";
     }
 
-    @RequestMapping("/list")
+    @RequestMapping("/book-list")
     @ResponseBody
-    public PageBean<BookVo> getList(int pageSize, int row) {
-        PageBean<BookVo> pageBean = new PageBean<BookVo>(pageSize, row);
+    public PageBean bookList(int pageSize, int row) {
+        PageBean<BookVO> pageBean = new PageBean<BookVO>(pageSize, row);
         bookService.selectByCondition(pageBean);
         return pageBean;
     }

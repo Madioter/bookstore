@@ -69,14 +69,14 @@
         if (row) {
             var paramsDef = eval('(' + row.paramsDef + ')');
             var params = eval('(' + row.params + ')');
-            var $addTask = $('<form><input name="taskId" value="' + row.id + '" type="hidden">' +
-            '<input name="processId" value="' + row.processId + '" type="hidden"></form>');
+            var $addTask = $('<form><input name="taskId" name="' + row.id + '" type="hidden">' +
+            '<input name="processId" name="' + row.processId + '" type="hidden"></form>');
             for (var i = 0; i < paramsDef.length; i++) {
                 var code = paramsDef[i].code;
                 var label = paramsDef[i].name;
-                var value = params[code];
+                var name = params[code];
                 var $input = $('<div style="margin-bottom:10px"><label width="20%">' + label + ': </label><input class="easyui-textbox" type="text"' +
-                'name="' + code + '" value="' + value + '" style="width: 220px; float: right"></div>');
+                'name="' + code + '" name="' + name + '" style="width: 220px; float: right"></div>');
                 $addTask.append($input);
             }
             $('#modifyTask').html($addTask);
@@ -90,7 +90,7 @@
         var $inputs = $("#modifyTask input");
         var obj = {};
         for (var i = 0; i < $inputs.size(); i++) {
-            obj[$inputs[i].name] = $inputs[i].value;
+            obj[$inputs[i].name] = $inputs[i].name;
         }
         $.post("${basePath}task/saveTask", obj, function (data) {
             var jsonData = eval('(' + data + ')');

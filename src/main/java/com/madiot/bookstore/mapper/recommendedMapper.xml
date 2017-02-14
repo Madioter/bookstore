@@ -8,7 +8,7 @@
         values (#{bookId})
     </insert>
 
-    <select id="selectByCondition" parameterType="com.madiot.bookstore.domain.PageBean" resultMap="com.madiot.bookstore.mapper.BookMapper.base">
+    <select id="selectByCondition" parameterType="com.madiot.bookstore.common.PageBean" resultMap="com.madiot.bookstore.mapper.BookMapper.base">
         select
         <include refid="com.madiot.bookstore.mapper.BookMapper.base_column"/>
         from t_recommended_list b left join t_book t on b.book_id = t.id
@@ -17,7 +17,7 @@
         </if>
     </select>
 
-    <select id="countByCondition" parameterType="com.madiot.bookstore.domain.PageBean">
+    <select id="countByCondition" parameterType="com.madiot.bookstore.common.PageBean">
         select count(1) from t_recommended_list
     </select>
 

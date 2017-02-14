@@ -1,8 +1,8 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domain.PageBean;
-import com.madiot.bookstore.domain.entity.BookEntity;
-import com.madiot.bookstore.domain.vo.BookVo;
+import com.madiot.bookstore.common.PageBean;
+import com.madiot.bookstore.domain.entity.BookDO;
+import com.madiot.bookstore.domain.vo.BookVO;
 import com.madiot.bookstore.mapper.BestSaleMapper;
 import com.madiot.bookstore.mapper.BookMapper;
 import com.madiot.bookstore.mapper.NewBookMapper;
@@ -33,18 +33,18 @@ public class BookService implements IBookService {
     @Resource
     private BookMapper bookMapper;
 
-    public List<BookVo> getNewBooks() {
-        List<BookVo> books = new ArrayList<BookVo>();
-        List<BookEntity> bookEntities = newBookMapper.selectByCondition(new PageBean<BookEntity>(5, 1));
-        for (BookEntity entity : bookEntities) {
-            BookVo bookVo = convert(entity);
+    public List<BookVO> getNewBooks() {
+        List<BookVO> books = new ArrayList<BookVO>();
+        List<BookDO> bookEntities = newBookMapper.selectByCondition(new PageBean<BookDO>(1, 5));
+        for (BookDO entity : bookEntities) {
+            BookVO bookVo = convert(entity);
             books.add(bookVo);
         }
         return books;
     }
 
-    public BookVo convert(BookEntity entity) {
-        BookVo bookVo = new BookVo();
+    public BookVO convert(BookDO entity) {
+        BookVO bookVo = new BookVO();
         bookVo.setTitle(entity.getTitle());
         bookVo.setAuthor(entity.getAuthor());
         BigDecimal cost = BigDecimal.valueOf(entity.getCost());
@@ -61,21 +61,21 @@ public class BookService implements IBookService {
         return bookVo;
     }
 
-    public List<BookVo> getBestSaleBooks() {
-        List<BookVo> books = new ArrayList<BookVo>();
-        List<BookEntity> bookEntities = bestSaleMapper.selectByCondition(new PageBean<BookEntity>(5, 1));
-        for (BookEntity entity : bookEntities) {
-            BookVo bookVo = convert(entity);
+    public List<BookVO> getBestSaleBooks() {
+        List<BookVO> books = new ArrayList<BookVO>();
+        List<BookDO> bookEntities = bestSaleMapper.selectByCondition(new PageBean<BookDO>(1, 5));
+        for (BookDO entity : bookEntities) {
+            BookVO bookVo = convert(entity);
             books.add(bookVo);
         }
         return books;
     }
 
-    public List<BookVo> getRecommendedBook() {
-        List<BookVo> books = new ArrayList<BookVo>();
-        List<BookEntity> bookEntities = recommendedMapper.selectByCondition(new PageBean<BookEntity>(5, 1));
-        for (BookEntity entity : bookEntities) {
-            BookVo bookVo = convert(entity);
+    public List<BookVO> getRecommendedBook() {
+        List<BookVO> books = new ArrayList<BookVO>();
+        List<BookDO> bookEntities = recommendedMapper.selectByCondition(new PageBean<BookDO>(1, 5));
+        for (BookDO entity : bookEntities) {
+            BookVO bookVo = convert(entity);
             if(bookVo.getDescription().length() > 100) {
                 bookVo.setDescription(bookVo.getDescription().substring(0, 90) + "...");
             }
@@ -84,7 +84,7 @@ public class BookService implements IBookService {
         return books;
     }
 
-    public void save(BookEntity book) {
+    public void save(BookDO book) {
 
     }
 
@@ -95,5 +95,10 @@ public class BookService implements IBookService {
             idList.add(Integer.valueOf(idStr));
         }
         bookMapper.deleteByBatch(idList);
+    }
+
+    @Override
+    public void selectByCondition(PageBean<BookVO> pageBean) {
+
     }
 }

@@ -3,7 +3,7 @@ package com.madiot.bookstore.domain.vo;
 /**
  * Created by julian on 16/12/31.
  */
-public class NoticeVo {
+public class NoticeVO {
 
     /**
      * 图片路径

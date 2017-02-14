@@ -1,6 +1,7 @@
 package com.madiot.bookstore.common;
 
-import com.igdata.tbox.domain.query.IQuery;
+
+import com.madiot.bookstore.common.query.IQuery;
 
 import java.util.List;
 

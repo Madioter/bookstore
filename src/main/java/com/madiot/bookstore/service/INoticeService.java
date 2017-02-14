@@ -1,7 +1,7 @@
 package com.madiot.bookstore.service;
 
-import com.madiot.bookstore.domain.entity.NoticeBGEntity;
-import com.madiot.bookstore.domain.vo.NoticeVo;
+import com.madiot.bookstore.domain.entity.NoticeBGDO;
+import com.madiot.bookstore.domain.vo.NoticeVO;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface INoticeService {
 
-    List<NoticeVo> getNotices(int count);
+    List<NoticeVO> getNotices(int count);
 
-    NoticeBGEntity getNoticeBg();
+    NoticeBGDO getNoticeBg();
 }

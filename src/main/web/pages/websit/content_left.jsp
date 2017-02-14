@@ -27,7 +27,7 @@
 
 <script type="text/javascript">
     function subpage(id) {
-        $.post("${path}/book/subPage",{id:id},function(data) {
+        $.post("${basePath}book/subPage",{id:id},function(data) {
             $("#templatemo_content_right").html(data);
         });
     }

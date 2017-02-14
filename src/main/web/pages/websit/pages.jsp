@@ -27,7 +27,7 @@
     <div id="banner"><!-- 轮播部分 -->
         <ul class="imgList"><!-- 图片部分 -->
         <c:forEach items="${notices}" var="li">
-            <li><a href="${li.link}"><img src="${path}/${li.imgPath}" width="${width}px" height="${height}px" alt="${li.alt}"></a></li>
+            <li><a href="${li.link}"><img src="${basePath}${li.imgPath}" width="${width}px" height="${height}px" alt="${li.alt}"></a></li>
         </c:forEach>
         </ul>
         <img src="./img/prev.png" width="20px" height="40px" id="prev">

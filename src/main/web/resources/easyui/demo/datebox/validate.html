@@ -24,9 +24,9 @@
 	<script>
 		$.extend($.fn.validatebox.defaults.rules, {
 			md: {
-				validator: function(value, param){
+				validator: function(name, param){
 					var d1 = $.fn.datebox.defaults.parser(param[0]);
-					var d2 = $.fn.datebox.defaults.parser(value);
+					var d2 = $.fn.datebox.defaults.parser(name);
 					return d2<=d1;
 				},
 				message: 'The date must be less than or equals to {0}.'

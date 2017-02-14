@@ -90,10 +90,10 @@
         <div style="margin-bottom:20px">
             <select class="easyui-combobox" id="converterType" label="编码类型:" labelPosition="left"
                     data-options="panelHeight:'auto'" style="width: 350px;">
-                <option value="PROTOCAL_BUFFER">PROTOBUF编码</option>
-                <option value="BINARY_NOTES_ASN_PER_UNALIGNED">Binary Notes的ASN.1 PER-U编码</option>
-                <option value="OBJECTIVE_SYSTEM_ASN_ALIGN">Objective System的ASN.1 PER-A编码</option>
-                <option value="JAC_ASN_BER">JAC的ASN.1 BER编码</option>
+                <option name="PROTOCAL_BUFFER">PROTOBUF编码</option>
+                <option name="BINARY_NOTES_ASN_PER_UNALIGNED">Binary Notes的ASN.1 PER-U编码</option>
+                <option name="OBJECTIVE_SYSTEM_ASN_ALIGN">Objective System的ASN.1 PER-A编码</option>
+                <option name="JAC_ASN_BER">JAC的ASN.1 BER编码</option>
             </select>
         </div>
     </form>

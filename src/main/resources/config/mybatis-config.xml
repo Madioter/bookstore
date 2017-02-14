@@ -7,15 +7,15 @@
         <setting name="cacheEnabled" value="true"/>
         <setting name="lazyLoadingEnabled" value="true"/>
         <setting name="aggressiveLazyLoading" value="false"/>
-        <!--         <setting title="enhancementEnabled" value="true"/> -->
-        <!--         <setting title="lazyLoadingEnabled" value="true"/> -->
-        <!--         <setting title="maxRequests" value="32"/> -->
-        <!--         <setting title="maxSessions" value="10"/> -->
-        <!--         <setting title="maxTransactions" value="5"/> -->
-        <!--         <setting title="useStatementNamespaces" value="true"/> -->
+        <!--         <setting title="enhancementEnabled" name="true"/> -->
+        <!--         <setting title="lazyLoadingEnabled" name="true"/> -->
+        <!--         <setting title="maxRequests" name="32"/> -->
+        <!--         <setting title="maxSessions" name="10"/> -->
+        <!--         <setting title="maxTransactions" name="5"/> -->
+        <!--         <setting title="useStatementNamespaces" name="true"/> -->
 
-        <!--     <setting title="lazyLoadingEnabled" value="true"/>-->
-        <!--     <setting title="aggressiveLazyLoading" value="false"/>-->
+        <!--     <setting title="lazyLoadingEnabled" name="true"/>-->
+        <!--     <setting title="aggressiveLazyLoading" name="false"/>-->
     </settings>
 
     <!-- 别名
@@ -29,7 +29,7 @@
     指定数据库分页方言Dialect, 其它方言:OracleDialect,SQLServerDialect,SybaseDialect,DB2Dialect,PostgreSQLDialect,MySQLDialect,DerbyDialect
     <plugins>
         <plugin interceptor="com.asgard.cfap.plugin.dialect.interceptor.OffsetLimitInterceptor">
-            <property title="dialectClass" value="com.asgard.cfap.plugin.dialect.MySQLDialect"/>
+            <property title="dialectClass" name="com.asgard.cfap.plugin.dialect.MySQLDialect"/>
         </plugin>
     </plugins>
     <mappers>

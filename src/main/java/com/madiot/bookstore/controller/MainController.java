@@ -1,8 +1,8 @@
 package com.madiot.bookstore.controller;
 
-import com.madiot.bookstore.domain.entity.NoticeBGEntity;
-import com.madiot.bookstore.domain.vo.BookVo;
-import com.madiot.bookstore.domain.vo.NoticeVo;
+import com.madiot.bookstore.domain.entity.NoticeBGDO;
+import com.madiot.bookstore.domain.vo.BookVO;
+import com.madiot.bookstore.domain.vo.NoticeVO;
 import com.madiot.bookstore.service.IBookService;
 import com.madiot.bookstore.service.INoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,6 @@ import java.util.List;
 /**
  * Created by julian on 16/12/25.
  */
-@RequestMapping("/main")
 @Controller
 public class MainController {
 
@@ -25,10 +24,26 @@ public class MainController {
     @Autowired
     private IBookService bookService;
 
-    @RequestMapping("/index")
-    public ModelAndView index() {
+    @RequestMapping("/main-index")
+    public ModelAndView mainIndex() {
         ModelAndView mv = new ModelAndView("/pages/websit/index.jsp");
-        NoticeBGEntity noticeBGEntity = noticeService.getNoticeBg();
+        NoticeBGDO noticeBGEntity = noticeService.getNoticeBg();
+        List<NoticeVO> notices = noticeService.getNotices(noticeBGEntity.getNoticeCount());
+        List<BookVO> newBooks = bookService.getNewBooks();
+        List<BookVO> bestSaleBooks = bookService.getBestSaleBooks();
+        List<BookVO> recommendedBooks = bookService.getRecommendedBook();
+        mv.addObject("notices", notices);
+        mv.addObject("noticeBG", noticeBGEntity);
+        mv.addObject("newBooks", newBooks);
+        mv.addObject("bestSaleBooks", bestSaleBooks);
+        mv.addObject("recommendedBooks", recommendedBooks);
+        return mv;
+    }
+
+    @RequestMapping("/back-index")
+    public ModelAndView backIndex() {
+        ModelAndView mv = new ModelAndView("/pages/backstage/index.jsp");
+        /*NoticeBGEntity noticeBGEntity = noticeService.getNoticeBg();
         List<NoticeVo> notices = noticeService.getNotices(noticeBGEntity.getNoticeCount());
         List<BookVo> newBooks = bookService.getNewBooks();
         List<BookVo> bestSaleBooks = bookService.getBestSaleBooks();
@@ -37,7 +52,7 @@ public class MainController {
         mv.addObject("noticeBG", noticeBGEntity);
         mv.addObject("newBooks", newBooks);
         mv.addObject("bestSaleBooks", bestSaleBooks);
-        mv.addObject("recommendedBooks", recommendedBooks);
+        mv.addObject("recommendedBooks", recommendedBooks);*/
         return mv;
     }
 }

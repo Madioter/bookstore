@@ -4,36 +4,34 @@
     String path = request.getContextPath();
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
-<script type="text/javascript" src="${basePath}resources/js/treegrid_extend.js"></script>
 <div id="dictionaryTb" style="height:auto">
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"
        onclick="createDictionary()">新增</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true"
        onclick="editDictionary()">修改</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear',plain:true"
-       onclick="deleteDictionary()">删除任务</a>
+       onclick="deleteDictionary()">删除</a>
 </div>
-<table id="dictionaryList"
+<table id="dictionaryList" class="easyui-treegrid"
        data-options="
 				iconCls: 'icon-ok',
 				rownumbers: true,
 				animate: true,
 				collapsible: true,
 				fitColumns: true,
-				url:'${basePath}dictionary/dictionary-list',
+				url:'${basePath}dictionary/dictionaryList',
 				method: 'get',
 				idField: 'id',
-				treeField: 'value',
-				pagination: true,
-				rownumbers: true, pageSize: 10,
-				width: $(window).width() - 90, height: $(window).height() - 150,
+				treeField: 'name',
+				width: $(window).width() - 90,
+				height: $(window).height() - 150,
 				toolbar: '#dictionaryTb'
 			">
     <thead>
     <tr>
-        <th data-options="field:'value',width:40%">值</th>
-        <th data-options="field:'code',width:20%">编码</th>
-        <th data-options="field:'parentId',width:20%">父级ID</th>
+        <th data-options="field:'name'" width="40%">名称</th>
+        <th data-options="field:'code'" width="20%">编码</th>
+        <th data-options="field:'parentId'" width="20%">父级ID</th>
     </tr>
     </thead>
 </table>
@@ -64,8 +62,8 @@
                    data-options="url:'${basePath}dictionary/getTree',method:'get',label:'父节点:'"/>
         </div>
         <div style="margin-bottom:20px">
-            <input class="easyui-textbox value" style="width: 350px; "
-                   data-options="label:'值:'"/>
+            <input class="easyui-textbox name" style="width: 350px; "
+                   data-options="label:'名称:'"/>
         </div>
         <div style="margin-bottom:20px">
             <input class="easyui-textbox code" style="width: 350px; "
@@ -77,7 +75,7 @@
 <script type="text/javascript">
     $(function () {
         $(window).resize(function () {
-            $('#dictionaryList').datagrid('resize', {
+            $('#dictionaryList').treegrid('resize', {
                 width: $(window).width() - 90,
                 height: $(window).height() - 150
             });
@@ -89,8 +87,8 @@
         if (row) {
             $(".dictionary-form .id").val(row.id);
             $(".dictionary-form .parentId").combotree("setValue", row.parentId);
-            $(".dictionary-form .value").combotree("setValue", row.value);
-            $(".dictionary-form .code").combotree("setValue", row.code);
+            $(".dictionary-form .name").textbox("setValue", row.name);
+            $(".dictionary-form .code").textbox("setValue", row.code);
             $('#modifyDictionary').dialog('open');
         } else {
             alert("请选择需要修改的类型");
@@ -100,12 +98,12 @@
     function modifyDictionary() {
         var id = $(".dictionary-form .id").val();
         var parentId = $(".dictionary-form .parentId").combotree("getValue");
-        var value = $(".dictionary-form .value").combotree("getValue");
-        var code = $(".dictionary-form .code").combotree("getValue");
+        var name = $(".dictionary-form .name").textbox("getValue");
+        var code = $(".dictionary-form .code").textbox("getValue");
         $.post("${basePath}dictionary/saveDictionary", {
             id: id,
             parentId: parentId,
-            value: value,
+            name: name,
             code: code
         }, function (data) {
             var jsonData = eval('(' + data + ')');
@@ -122,8 +120,8 @@
     function createDictionary() {
         $(".dictionary-form .id").val("");
         $(".dictionary-form .parentId").combotree("setValue", "");
-        $(".dictionary-form .value").combotree("setValue", "");
-        $(".dictionary-form .code").combotree("setValue", "");
+        $(".dictionary-form .name").textbox("setValue", "");
+        $(".dictionary-form .code").textbox("setValue", "");
         $('#modifyDictionary').dialog('open');
     }
 

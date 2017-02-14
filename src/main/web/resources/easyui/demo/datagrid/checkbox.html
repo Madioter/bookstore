@@ -30,9 +30,9 @@
 	</table>
 	<div style="margin:10px 0;">
 		<span>Selection Mode: </span>
-		<select onchange="$('#dg').datagrid({singleSelect:(this.value==0)})">
-			<option value="0">Single Row</option>
-			<option value="1">Multiple Rows</option>
+		<select onchange="$('#dg').datagrid({singleSelect:(this.name==0)})">
+			<option name="0">Single Row</option>
+			<option name="1">Multiple Rows</option>
 		</select><br/>
 		SelectOnCheck: <input type="checkbox" checked onchange="$('#dg').datagrid({selectOnCheck:$(this).is(':checked')})"><br/>
 		CheckOnSelect: <input type="checkbox" checked onchange="$('#dg').datagrid({checkOnSelect:$(this).is(':checked')})">

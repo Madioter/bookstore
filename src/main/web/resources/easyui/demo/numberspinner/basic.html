@@ -11,12 +11,12 @@
 </head>
 <body>
 	<h2>Basic NumberSpinner</h2>
-	<p>Click spinner button to change value.</p>
+	<p>Click spinner button to change name.</p>
 	<div style="margin:20px 0;"></div>
 	<div class="easyui-panel" style="width:100%;max-width:400px;padding:30px 60px;">
 		<input class="easyui-numberspinner" style="width:100%;" data-options="
-					onChange: function(value){
-						$('#vv').text(value);
+					onChange: function(name){
+						$('#vv').text(name);
 					}
 				">
 		<div style="margin:10px 0;">

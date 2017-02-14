@@ -4,7 +4,7 @@
     <c:forEach var="book" items="${recommendedBooks}" varStatus="status">
         <div class="templatemo_product_box">
             <h1>${book.title} <span>(${book.author})</span></h1>
-            <img src="${path}/${book.coverPath}" alt="image"/>
+            <img src="${basePath}${book.coverPath}" alt="image"/>
             <div class="product_info">
                 <div style="height: 100px;">
                 <p>${book.description}</p>

@@ -15,7 +15,7 @@
             <select class="easyui-combobox applicationType"
                     data-options="label:'业务类型:',panelHeight:'auto',width:'50%'">
                 <c:forEach var="type" items="${applicationTypes}">
-                    <option value="${type.code}">
+                    <option name="${type.code}">
                             ${type.name}
                     </option>
                 </c:forEach>
@@ -25,7 +25,7 @@
             <select class="easyui-combobox converterType"
                     data-options="label:'编码类型:',panelHeight:'auto',width:'50%'">
                 <c:forEach var="type" items="${converterTypes}">
-                    <option value="${type.code}">
+                    <option name="${type.code}">
                             ${type.name}
                     </option>
                 </c:forEach>

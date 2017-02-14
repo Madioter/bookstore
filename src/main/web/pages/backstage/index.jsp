@@ -26,7 +26,7 @@
 </head>
 <body class="easyui-layout">
 <div data-options="region:'north',border:false" style="height:60px;background:#B3DFDA;padding:10px">
-    <h2>TBOX 模拟任务管理</h2>
+    <h2>后台管理系统</h2>
 </div>
 <div data-options="region:'west',split:true,collapsed:true,
 				hideExpandTool: true,
@@ -38,23 +38,25 @@
 				}
 				" title="West" style="width:100px;">
     <div id="titlebar" style="padding:2px">
-        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="process"
-           data-options="iconCls:'icon-large-picture',size:'large',iconAlign:'top'">流程管理</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="task"
-           data-options="iconCls:'icon-large-shapes',size:'large',iconAlign:'top'">任务管理</a>
-        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="channel"
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="book"
+           data-options="iconCls:'icon-large-picture',size:'large',iconAlign:'top'">书籍管理</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="dictionary"
+           data-options="iconCls:'icon-large-shapes',size:'large',iconAlign:'top'">分类管理</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="notice"
+           data-options="iconCls:'icon-large-shapes',size:'large',iconAlign:'top'">告示栏管理</a>
+        <%--<a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="channel"
            data-options="iconCls:'icon-large-smartart',size:'large',iconAlign:'top'">通道管理</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="logger"
            data-options="iconCls:'icon-large-chart',size:'large',iconAlign:'top'">日志分析</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="tools"
            data-options="iconCls:'icon-large-tool',size:'large',iconAlign:'top'">解析工具</a>
         <a href="javascript:void(0)" class="easyui-linkbutton" style="width:100%" id="sender"
-           data-options="iconCls:'icon-large-tool',size:'large',iconAlign:'top'">消息发送</a>
+           data-options="iconCls:'icon-large-tool',size:'large',iconAlign:'top'">消息发送</a>--%>
     </div>
 </div>
 <div data-options="region:'center',title:''">
     <div class="easyui-tabs" data-options="fit:true,border:false,plain:true" style="height:700px">
-        <div id="processTab" title="流程管理" data-options="href:'${basePath}process/processPage', closable: true"></div>
+        <div id="bookTab" title="书籍管理" data-options="href:'${basePath}book/bookPage', closable: true"></div>
     </div>
 </div>
 </body>
@@ -72,17 +74,17 @@
             cache: false
         });
 
-        $("#process").click(function () {
-            if ($(".easyui-tabs #processTab").size() == 0) {
+        $("#dictionary").click(function () {
+            if ($(".easyui-tabs #dictionaryTab").size() == 0) {
                 $('.easyui-tabs').tabs('add', {
-                    title: '流程管理',
+                    title: '分类管理',
                     content: '<div></div>',
                     closable: true,
-                    href: '${basePath}process/processPage',
-                    id: 'processTab'
+                    href: '${basePath}dictionary/dictionaryPage',
+                    id: 'dictionaryTab'
                 });
             } else {
-                $(".easyui-tabs").tabs('select', '流程管理');
+                $(".easyui-tabs").tabs('select', '分类管理');
             }
         });
 

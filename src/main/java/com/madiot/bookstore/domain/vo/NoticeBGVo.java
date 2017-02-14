@@ -3,7 +3,7 @@ package com.madiot.bookstore.domain.vo;
 /**
  * Created by julian on 17/1/1.
  */
-public class NoticeBGVo {
+public class NoticeBGVO {
 
     /**
      * 广告的背景图片地址

@@ -1,7 +1,6 @@
 package com.madiot.bookstore.common.aop;
 
-import com.igdata.tbox.domain.MessageResponse;
-import com.igdata.utils.json.JsonUtils;
+import com.madiot.bookstore.common.JsonUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -27,7 +26,7 @@ public class MessageAspect {
     /**
      * 返回消息切点
      */
-    @Pointcut("@annotation(com.igdata.tbox.server.aop.MessageBody)")
+    @Pointcut("@annotation(com.madiot.bookstore.common.aop.MessageBody)")
     public void methodResponse() {
     }
 

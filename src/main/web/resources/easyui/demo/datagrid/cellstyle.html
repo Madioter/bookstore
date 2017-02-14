@@ -11,7 +11,7 @@
 </head>
 <body>
 	<h2>DataGrid Cell Style</h2>
-	<p>The cells which listprice value is less than 30 are highlighted.</p>
+	<p>The cells which listprice name is less than 30 are highlighted.</p>
 	<div style="margin:20px 0;"></div>
 	<table class="easyui-datagrid" title="DataGrid Cell Style" style="width:700px;height:250px"
 			data-options="
@@ -32,8 +32,8 @@
 		</thead>
 	</table>
 	<script type="text/javascript">
-		function cellStyler(value,row,index){
-			if (value < 30){
+		function cellStyler(name,row,index){
+			if (name < 30){
 				return 'background-color:#ffee00;color:red;';
 			}
 		}

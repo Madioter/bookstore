@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.madiot.bookstore.mapper.BookMapper">
-    <resultMap id="base" type="com.madiot.bookstore.domain.entity.BookEntity">
+    <resultMap id="base" type="com.madiot.bookstore.domain.entity.BookDO">
         <id column="id" property="id"></id>
         <result column="title" property="title"></result>
         <result column="author" property="author"></result>
@@ -20,12 +20,12 @@
         t.id, t.title, t.author, t.publication_date, t.press, t.isbn, t.pages, t.cost, t.cover_path, t.description, t.link
     </sql>
 
-    <insert id="insert" parameterType="com.madiot.bookstore.domain.entity.BookEntity">
+    <insert id="insert" parameterType="com.madiot.bookstore.domain.entity.BookDO">
         insert into t_book (title, author, publication_date, press, isbn, pages, cost, cover_path, description, link)
         values (#{title}, #{author}, #{publicationDate}, #{press}, #{isbn}, #{pages}, #{cost}, #{coverPath}, #{description}, #{link})
     </insert>
 
-    <update id="update" parameterType="com.madiot.bookstore.domain.entity.BookEntity">
+    <update id="update" parameterType="com.madiot.bookstore.domain.entity.BookDO">
         update t_book
         <set>
             <if test="title != null and title != ''">
@@ -59,22 +59,22 @@
         where id = #{id}
     </update>
 
-    <select id="selectByCondition" parameterType="com.madiot.bookstore.domain.PageBean" resultMap="base">
+    <select id="selectByCondition" parameterType="com.madiot.bookstore.common.PageBean" resultMap="base">
         select
         <include refid="base_column"/>
         from t_book t
         <where>
-            <if test="condition != null and condition.title != null and condition.title != ''">
-                and title like CONCAT('%','${condition.title}','%')
+            <if test="conditions != null and conditions.title != null and conditions.title != ''">
+                and title like CONCAT('%','${conditions.title}','%')
             </if>
-            <if test="condition != null and condition.author != null and condition.author != ''">
-                and author like CONCAT('%','${condition.author}','%')
+            <if test="conditions != null and conditions.author != null and conditions.author != ''">
+                and author like CONCAT('%','${conditions.author}','%')
             </if>
-            <if test="condition != null and condition.press != null and condition.press != ''">
-                and press like CONCAT('%','${condition.press}','%')
+            <if test="conditions != null and conditions.press != null and conditions.press != ''">
+                and press like CONCAT('%','${conditions.press}','%')
             </if>
-            <if test="condition != null and condition.isbn != null and condition.isbn != ''">
-                and isbn = #{condition.isbn}
+            <if test="conditions != null and conditions.isbn != null and conditions.isbn != ''">
+                and isbn = #{conditions.isbn}
             </if>
             and t.is_delete = 0
         </where>
@@ -84,20 +84,20 @@
         </if>
     </select>
 
-    <select id="countByCondition" parameterType="com.madiot.bookstore.domain.PageBean">
+    <select id="countByCondition" parameterType="com.madiot.bookstore.common.PageBean">
         select count(1) from t_book t
         <where>
-            <if test="condition != null and condition.title != null and condition.title != ''">
-                and title like CONCAT('%','${condition.title}','%')
+            <if test="conditions != null and conditions.title != null and conditions.title != ''">
+                and title like CONCAT('%','${conditions.title}','%')
             </if>
-            <if test="condition != null and condition.author != null and condition.author != ''">
-                and author like CONCAT('%','${condition.author}','%')
+            <if test="conditions != null and conditions.author != null and conditions.author != ''">
+                and author like CONCAT('%','${conditions.author}','%')
             </if>
-            <if test="condition != null and condition.press != null and condition.press != ''">
-                and press like CONCAT('%','${condition.press}','%')
+            <if test="conditions != null and conditions.press != null and conditions.press != ''">
+                and press like CONCAT('%','${conditions.press}','%')
             </if>
-            <if test="condition != null and condition.isbn != null and condition.isbn != ''">
-                and isbn = #{condition.isbn}
+            <if test="conditions != null and conditions.isbn != null and conditions.isbn != ''">
+                and isbn = #{conditions.isbn}
             </if>
             and t.is_delete = 0
         </where>

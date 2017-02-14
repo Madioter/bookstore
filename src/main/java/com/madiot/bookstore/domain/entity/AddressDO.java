@@ -29,7 +29,7 @@ public class AddressDO {
     /**
      * 所属用户
      */
-    private UserEntity user;
+    private UserDO user;
 
 
     public Integer getId() {
@@ -64,11 +64,11 @@ public class AddressDO {
         this.phoneNumber = phoneNumber;
     }
 
-    public UserEntity getUser() {
+    public UserDO getUser() {
         return user;
     }
 
-    public void setUser(UserEntity user) {
+    public void setUser(UserDO user) {
         this.user = user;
     }
 }

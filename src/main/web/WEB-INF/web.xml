@@ -87,7 +87,7 @@
         &lt;!&ndash; singleSession默认为true,若设为false则等于没用OpenSessionInView &ndash;&gt;
         <init-param>
             <param-name>singleSession</param-name>
-            <param-value>true</param-value>
+            <param-name>true</param-name>
         </init-param>
     </filter>
     <filter-mapping>
