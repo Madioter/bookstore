@@ -2,6 +2,7 @@ package com.madiot.bookstore.common;
 
 import com.madiot.bookstore.domain.entity.DictionaryDO;
 import com.madiot.bookstore.mapper.DictionaryMapper;
+import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +39,7 @@ public class DictionaryHolder {
         for (DictionaryDO dictionary : dictionaryList) {
             dictionaryMap.put(dictionary.getId(), dictionary);
             if (dictionary.getIsDelete() == 0 && dictionary.getParentId() == null) {
-                setChildren(dictionary);
+                setChildren(dictionary, dictionaryList);
                 topDictionaries.add(dictionary);
             }
         }
@@ -67,18 +68,23 @@ public class DictionaryHolder {
         DictionaryDO dictionary = dictionaryMap.get(id);
         StringBuilder builder = new StringBuilder();
         while (dictionary != null && dictionary.getParentId() != null) {
-            builder.insert(0, "/" + dictionary.getName());
+            builder.insert(0, "/" + dictionary.getText());
             dictionary = dictionaryMap.get(dictionary.getParentId());
         }
         return builder.toString();
     }
 
-    public List<DictionaryDO> getChildren(Integer id) {
+    private List<DictionaryDO> getChildren(Integer id, List<DictionaryDO> dictionaryList) {
         if (id == null) {
-            return topDictionaries;
+            return null;
         }
-        DictionaryDO dictionary = getById(id);
-        return dictionary.getChildren();
+        List<DictionaryDO> children = new ArrayList<DictionaryDO>();
+        for (DictionaryDO item : dictionaryList) {
+            if (item.getParentId() != null && item.getParentId().equals(id) && item.getIsDelete() == 0) {
+                children.add(item);
+            }
+        }
+        return children;
     }
 
     public List getTree(Integer parentId) {
@@ -90,13 +96,15 @@ public class DictionaryHolder {
         }
     }
 
-    private void setChildren(DictionaryDO dictionary) {
+    private void setChildren(DictionaryDO dictionary, List<DictionaryDO> dictionaryList) {
         if (dictionary != null) {
-            List<DictionaryDO> dictionaryList = getChildren(dictionary.getId());
-            for (DictionaryDO item : dictionaryList) {
-                setChildren(item);
+            List<DictionaryDO> children = getChildren(dictionary.getId(), dictionaryList);
+            if (!CollectionUtils.isEmpty(children)) {
+                for (DictionaryDO item : children) {
+                    setChildren(item, dictionaryList);
+                }
+                dictionary.setChildren(children);
             }
-            dictionary.setChildren(dictionaryList);
         }
     }
 }

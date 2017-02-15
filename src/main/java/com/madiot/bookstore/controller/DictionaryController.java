@@ -63,12 +63,20 @@ public class DictionaryController {
     @RequestMapping("/saveDictionary")
     @ResponseBody
     @MessageBody
-    public String saveDictionary(String name, String code, Integer parentId, Integer id) {
+    public String saveDictionary(String text, String code, Integer parentId, Integer id) {
         DictionaryDO dictionaryDO = new DictionaryDO();
         dictionaryDO.setCode(code);
-        dictionaryDO.setName(name);
+        dictionaryDO.setText(text);
         dictionaryDO.setParentId(parentId);
         dictionaryDO.setId(id);
         return String.valueOf(dictionaryService.save(dictionaryDO));
+    }
+
+    @RequestMapping("/refreshDictionary")
+    @ResponseBody
+    @MessageBody
+    public String refreshDictionary() {
+        DictionaryHolder.getInstance().refresh();
+        return "success";
     }
 }

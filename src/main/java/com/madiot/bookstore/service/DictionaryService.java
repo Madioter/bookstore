@@ -44,7 +44,7 @@ public class DictionaryService implements IDictionaryService {
     }
 
     private void getAllChildren(DictionaryDO dictionary, List<Integer> ids) {
-        List<DictionaryDO> children = DictionaryHolder.getInstance().getChildren(dictionary.getId());
+        List<DictionaryDO> children = DictionaryHolder.getInstance().getById(dictionary.getId()).getChildren();
         if (!CollectionUtils.isEmpty(children)) {
             for (DictionaryDO item : children) {
                 getAllChildren(item, ids);

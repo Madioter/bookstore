@@ -31,7 +31,7 @@ public class DictionaryDO {
     /**
      * 当前类别信息
      */
-    private String name;
+    private String text;
 
     /**
      * 当前类别编码
@@ -64,12 +64,12 @@ public class DictionaryDO {
         this.parentId = parentId;
     }
 
-    public String getName() {
-        return name;
+    public String getText() {
+        return text;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setText(String text) {
+        this.text = text;
     }
 
     public String getCode() {

@@ -11,6 +11,8 @@
        onclick="editDictionary()">修改</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear',plain:true"
        onclick="deleteDictionary()">删除</a>
+    <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear',plain:true"
+       onclick="refreshDictionary()">刷新</a>
 </div>
 <table id="dictionaryList" class="easyui-treegrid"
        data-options="
@@ -22,21 +24,21 @@
 				url:'${basePath}dictionary/dictionaryList',
 				method: 'get',
 				idField: 'id',
-				treeField: 'name',
+				treeField: 'text',
 				width: $(window).width() - 90,
 				height: $(window).height() - 150,
 				toolbar: '#dictionaryTb'
 			">
     <thead>
     <tr>
-        <th data-options="field:'name'" width="40%">名称</th>
+        <th data-options="field:'text'" width="40%">名称</th>
         <th data-options="field:'code'" width="20%">编码</th>
         <th data-options="field:'parentId'" width="20%">父级ID</th>
     </tr>
     </thead>
 </table>
 
-<div id="modifyDictionary" class="easyui-dialog" title="编辑字典" style="width:400px;height:200px;padding:10px"
+<div id="modifyDictionary" class="easyui-dialog" title="编辑字典" style="width:450px;height:200px;padding:10px"
      data-options="
 				iconCls: 'icon-save',
 				closed : true,
@@ -57,15 +59,15 @@
     <form class="dictionary-form">
         <input class="id" name="id" type="hidden">
 
-        <div style="margin-bottom:20px">
+        <div style="margin-bottom:10px">
             <input class="easyui-combotree parentId" style="width:350px;"
                    data-options="url:'${basePath}dictionary/getTree',method:'get',label:'父节点:'"/>
         </div>
-        <div style="margin-bottom:20px">
-            <input class="easyui-textbox name" style="width: 350px; "
+        <div style="margin-bottom:10px">
+            <input class="easyui-textbox text" style="width: 350px; "
                    data-options="label:'名称:'"/>
         </div>
-        <div style="margin-bottom:20px">
+        <div style="margin-bottom:10px">
             <input class="easyui-textbox code" style="width: 350px; "
                    data-options="label:'编码:'"/>
         </div>
@@ -83,11 +85,11 @@
     });
 
     function editDictionary() {
-        var row = $('#dictionaryList').datagrid('getSelected');
+        var row = $('#dictionaryList').treegrid('getSelected');
         if (row) {
             $(".dictionary-form .id").val(row.id);
             $(".dictionary-form .parentId").combotree("setValue", row.parentId);
-            $(".dictionary-form .name").textbox("setValue", row.name);
+            $(".dictionary-form .text").textbox("setValue", row.text);
             $(".dictionary-form .code").textbox("setValue", row.code);
             $('#modifyDictionary').dialog('open');
         } else {
@@ -98,19 +100,18 @@
     function modifyDictionary() {
         var id = $(".dictionary-form .id").val();
         var parentId = $(".dictionary-form .parentId").combotree("getValue");
-        var name = $(".dictionary-form .name").textbox("getValue");
+        var text = $(".dictionary-form .text").textbox("getValue");
         var code = $(".dictionary-form .code").textbox("getValue");
         $.post("${basePath}dictionary/saveDictionary", {
             id: id,
             parentId: parentId,
-            name: name,
+            text: text,
             code: code
         }, function (data) {
             var jsonData = eval('(' + data + ')');
             if (jsonData.success) {
-                alert("任务保存成功");
+                alert("保存成功");
                 $('#modifyDictionary').dialog('close');
-                $("#dictionaryList").datagrid("reload", {});
             } else {
                 alert(jsonData.errorMessage);
             }
@@ -118,15 +119,26 @@
     }
 
     function createDictionary() {
+        var row = $('#dictionaryList').treegrid('getSelected');
+        if (row) {
+            var parentId = row.id;
+        }
         $(".dictionary-form .id").val("");
-        $(".dictionary-form .parentId").combotree("setValue", "");
-        $(".dictionary-form .name").textbox("setValue", "");
+        $(".dictionary-form .parentId").combotree("setValue", parentId);
+        $(".dictionary-form .text").textbox("setValue", "");
         $(".dictionary-form .code").textbox("setValue", "");
         $('#modifyDictionary').dialog('open');
     }
 
+    function refreshDictionary() {
+        $.post("${basePath}dictionary/refreshDictionary", {}, function (data) {
+            $("#dictionaryList").treegrid("reload", {});
+            $(".dictionary-form .parentId").combotree("reload");
+        });
+    }
+
     function deleteDictionary() {
-        var row = $('#dictionaryList').datagrid('getChecked');
+        var row = $('#dictionaryList').treegrid('getSelected');
         if (row) {
             var id = row.id;
         } else {
@@ -138,11 +150,9 @@
             var jsonData = eval('(' + data + ')');
             if (jsonData.success) {
                 alert("删除成功");
-                $("#dictionaryList").datagrid("reload", {});
             } else {
                 alert(jsonData.errorMessage);
             }
         });
-
     }
 </script>
