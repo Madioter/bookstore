@@ -88,17 +88,17 @@
             }
         });
 
-        $("#task").click(function () {
-            if ($(".easyui-tabs #taskTab").size() == 0) {
+        $("#book").click(function () {
+            if ($(".easyui-tabs #bookTab").size() == 0) {
                 $('.easyui-tabs').tabs('add', {
-                    title: '任务管理',
+                    title: '书籍管理',
                     content: '<div></div>',
                     closable: true,
-                    href: '${basePath}task/taskPage',
-                    id: 'taskTab'
+                    href: '${basePath}book/bookPage',
+                    id: 'bookTab'
                 });
             } else {
-                $(".easyui-tabs").tabs('select', '任务管理');
+                $(".easyui-tabs").tabs('select', '书籍管理');
             }
         });
 

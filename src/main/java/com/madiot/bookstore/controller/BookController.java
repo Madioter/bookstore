@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+
 /**
  * Created by julian on 17/1/1.
  */
@@ -38,6 +40,11 @@ public class BookController {
         return "/pages/backstage/book/bookPage.jsp";
     }
 
+    @RequestMapping("/editPage")
+    public String editPage() {
+        return "/pages/backstage/book/editPage.jsp";
+    }
+
     @RequestMapping("/save")
     @ResponseBody
     public String save(BookDO book) {
@@ -52,10 +59,10 @@ public class BookController {
         return "success";
     }
 
-    @RequestMapping("/book-list")
+    @RequestMapping("/bookList")
     @ResponseBody
-    public PageBean bookList(int pageSize, int row) {
-        PageBean<BookVO> pageBean = new PageBean<BookVO>(pageSize, row);
+    public PageBean bookList(Integer page, Integer rows) {
+        PageBean<BookVO> pageBean = new PageBean<BookVO>(page, rows);
         bookService.selectByCondition(pageBean);
         return pageBean;
     }

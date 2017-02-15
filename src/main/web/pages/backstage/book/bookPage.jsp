@@ -5,7 +5,7 @@
     String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
 %>
 <table class="easyui-datagrid" id="bookList"
-       data-options="url:'${basePath}book/book-list', method:'get', singleSelect:false, fit:false,
+       data-options="url:'${basePath}book/bookList', method:'get', singleSelect:false, fit:false,
               width: $(window).width() - 90, height: $(window).height() - 150,
        fitColumns:true,nowrap: false, rownumbers: true, pageSize: 10, pagination: true, toolbar: '#bookTb'">
     <thead>
@@ -22,16 +22,16 @@
     </thead>
 </table>
 
-<div id="taskTb" style="height:auto">
+<div id="bookTb" style="height:auto">
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-add',plain:true"
        onclick="createBook()">新增</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-edit',plain:true"
        onclick="editBook()">修改</a>
     <a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-clear',plain:true"
-       onclick="deleteBook()">删除任务</a>
+       onclick="deleteBook()">删除</a>
 </div>
 
-<div id="modifyBook" class="easyui-dialog" title="编辑书籍" style="width:400px;height:200px;padding:10px"
+<div id="modifyBook" class="easyui-dialog" title="编辑书籍" style="width:100%;height:200px;padding:10px"
      data-options="
 				iconCls: 'icon-save',
 				closed : true,
@@ -51,7 +51,50 @@
 			">
     <form class="book-form">
         <input class="id" name="id" name="" type="hidden">
-
+        <div style="margin-bottom:20px;float:left;width:50%;">
+            <select class="easyui-combobox applicationType"
+                    data-options="label:'业务类型:',panelHeight:'auto',width:'50%'">
+                <c:forEach var="type" items="${applicationTypes}">
+                    <option name="${type.code}">
+                            ${type.name}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+        <div style="margin-bottom:20px;float:right;width:50%;">
+            <select class="easyui-combobox converterType"
+                    data-options="label:'编码类型:',panelHeight:'auto',width:'50%'">
+                <c:forEach var="type" items="${converterTypes}">
+                    <option name="${type.code}">
+                            ${type.name}
+                    </option>
+                </c:forEach>
+            </select>
+        </div>
+        <div style="width:50%;float:left;">
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox header" style="width:90%;height:100px" labelPosition="top"
+                       data-options="label:'dispatcher header:',multiline:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox body" style="width:90%;height:100px" labelPosition="top"
+                       data-options="label:'dispatcher body:',multiline:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox data" style="width:90%;height:200px" labelPosition="top"
+                       data-options="label:'application data:',multiline:true">
+            </div>
+        </div>
+        <div style="width:50%;float:right;">
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox hexCode" style="width:90%;height:150px" labelPosition="top"
+                       data-options="label:'十六进制数据:',multiline:true">
+            </div>
+            <div style="margin-bottom:20px">
+                <input class="easyui-textbox hexCodeSwap" style="width:90%;height:250px" labelPosition="top"
+                       data-options="label:'十六进制数据格式转换:',multiline:true">
+            </div>
+        </div>
     </form>
 </div>
 
@@ -65,91 +108,48 @@
         });
     });
 
+    function createBook() {
+        $('#modifyBook').dialog('open');
+    }
+
     function editBook() {
         var row = $('#bookList').datagrid('getSelected');
         if (row) {
-            var $addTask = $('<form><input name="taskId" name="' + row.id + '" type="hidden">' +
-            '<input name="processId" name="' + row.processId + '" type="hidden"></form>');
-            for (var i = 0; i < paramsDef.length; i++) {
-                var code = paramsDef[i].code;
-                var label = paramsDef[i].name;
-                var name = params[code];
-                var $input = $('<div style="margin-bottom:10px"><label width="20%">' + label + ': </label><input class="easyui-textbox" type="text"' +
-                'name="' + code + '" name="' + name + '" style="width: 220px; float: right"></div>');
-                $addTask.append($input);
-            }
-            $('#modifyTask').html($addTask);
-            $('#modifyTask').dialog('open');
+
+            $('#modifyBook').dialog('open');
         } else {
-            alert("请选择需要修改的任务");
+            alert("请选择需要修改的书籍");
         }
     }
 
-    function modifyTask() {
-        var $inputs = $("#modifyTask input");
-        var obj = {};
-        for (var i = 0; i < $inputs.size(); i++) {
-            obj[$inputs[i].name] = $inputs[i].name;
-        }
-        $.post("${basePath}task/saveTask", obj, function (data) {
+    function modifyBook() {
+
+
+        $.post("${basePath}book/saveBook", obj, function (data) {
             var jsonData = eval('(' + data + ')');
             if (jsonData.success) {
-                alert("任务保存成功");
-                $('#modifyTask').dialog('close');
-                $("#taskList").datagrid("reload", {});
+                alert("保存成功");
+                $('#modifyBook').dialog('close');
+                $("#bookList").datagrid("reload", {});
             } else {
                 alert(jsonData.errorMessage);
             }
         });
     }
 
-    function startTask() {
-        var row = $('#taskList').datagrid('getSelected');
-        if (row) {
-            $.post("${basePath}task/startTask", {taskId: row.id}, function (data) {
-                var jsonData = eval('(' + data + ')');
-                if (jsonData.success) {
-                    alert("启动任务成功");
-                    $("#taskList").datagrid("reload", {});
-                } else {
-                    alert(jsonData.errorMessage);
-                }
-            });
-        } else {
-            alert("请选择需要启动的任务");
-        }
-    }
-
-    function stopTask() {
-        var row = $('#taskList').datagrid('getSelected');
-        if (row) {
-            $.post("${basePath}task/stopTask", {taskId: row.id}, function (data) {
-                var jsonData = eval('(' + data + ')');
-                if (jsonData.success) {
-                    alert("停止任务成功");
-                    $("#taskList").datagrid("reload", {});
-                } else {
-                    alert(jsonData.errorMessage);
-                }
-            });
-        } else {
-            alert("请选择需要停止的任务");
-        }
-    }
-
-    function deleteTask() {
-        var selRows = $('#taskList').datagrid('getChecked');
+    function deleteBook() {
+        var selRows = $('#bookList').datagrid('getChecked');
         var ids = [];
         if (selRows) {
             for (var i = 0; i < selRows.length; i++) {
                 ids[i] = selRows[i].id;
             }
         } else {
-            alert("请选择需要删除的任务");
+            alert("请选择需要删除的书籍");
             return;
         }
 
-        $.post("${basePath}task/deleteTask", {taskIds: ids.join(",")}, function (data) {
+        $.post("${basePath}book/deleteBook", {bookIds: ids.join(",")}, function (data) {
             var jsonData = eval('(' + data + ')');
             if (jsonData.success) {
                 alert("删除任务成功");
